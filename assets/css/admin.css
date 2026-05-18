@@ -1,0 +1,34 @@
+/* aGo Access — Admin CSS */
+.ago-layout { display: flex; gap: 20px; margin-top: 20px; }
+.ago-main { flex: 1; max-width: 680px; }
+.ago-sidebar { width: 280px; flex-shrink: 0; }
+.card.ago-card { margin-bottom: 16px; }
+.card.ago-card h2 { margin-top: 0; font-size: 15px; }
+.ago-features { list-style: none; padding: 0; margin: 12px 0 0; }
+.ago-features li { font-size: 13px; padding: 3px 0; color: #555; }
+.ago-features li::before { content: "\2713"; color: #00a32a; font-weight: bold; margin-right: 8px; }
+.ago-donation { text-align: center; }
+.ago-donation-amounts { display: flex; gap: 8px; justify-content: center; margin: 12px 0; }
+.ago-amount { display: inline-block; padding: 8px 18px; background: #f0f0f1; border: 1px solid #c3c4c7; border-radius: 4px; color: #1d2327; font-weight: 600; font-size: 14px; text-decoration: none; transition: all 0.2s; }
+.ago-amount:hover { background: #2271b1; color: #fff; border-color: #2271b1; }
+.ago-coffee-btn { display: inline-flex; align-items: center; justify-content: center; padding: 10px 24px; background: #1d2327; color: #fff !important; border-radius: 6px; text-decoration: none; font-size: 14px; font-weight: 500; transition: background 0.2s; margin: 8px 0; }
+.ago-coffee-btn:hover { background: #2271b1; color: #fff !important; }
+.ago-donation-note { font-size: 11px; color: #999; margin-top: 8px; }
+.ago-footer { text-align: center; padding: 16px 0; }
+.ago-footer-logo { display: inline-block; margin-bottom: 8px; transition: opacity 0.2s; }
+.ago-footer-logo:hover { opacity: 0.8; }
+#ago-status { margin-top: 12px; padding: 10px 16px; border-radius: 4px; font-size: 14px; }
+#ago-status.success { background: #edfaef; color: #00a32a; border: 1px solid #00a32a; }
+#ago-status.error { background: #fcf0f1; color: #d63638; border: 1px solid #d63638; }
+/* Score */
+.ago-score { display: inline-flex; align-items: center; justify-content: center; width: 64px; height: 64px; border-radius: 50%; font-size: 22px; font-weight: 700; color: #fff; margin-right: 16px; }
+.ago-score.good { background: #00a32a; }
+.ago-score.ok { background: #dba617; }
+.ago-score.bad { background: #d63638; }
+.ago-issue { padding: 8px 12px; border-radius: 4px; margin-bottom: 6px; font-size: 13px; }
+.ago-issue.error { background: #fcf0f1; border-left: 3px solid #d63638; }
+.ago-issue.warning { background: #fcf9e8; border-left: 3px solid #dba617; }
+.ago-issue.info { background: #f0f7fc; border-left: 3px solid #2271b1; }
+.ago-issue.success { background: #edfaef; border-left: 3px solid #00a32a; }
+.ago-issue .fix { font-size: 12px; color: #666; margin-top: 2px; }
+@media (max-width: 960px) { .ago-layout { flex-direction: column; } .ago-sidebar { width: 100%; max-width: 680px; } }

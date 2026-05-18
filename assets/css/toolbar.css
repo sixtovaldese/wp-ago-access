@@ -1,0 +1,100 @@
+/* aGo Access — Toolbar CSS */
+#ago-access-toolbar { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; font-size: 14px; line-height: 1.5; z-index: 99997; }
+
+/* Toggle button */
+.ago-a11y-toggle { position: fixed; top: 50%; transform: translateY(-50%); z-index: 99997; width: 48px; height: 48px; border-radius: 50%; border: none; cursor: pointer; box-shadow: 0 2px 8px rgba(0,0,0,0.3); display: flex; align-items: center; justify-content: center; transition: transform 0.2s; color: #fff; }
+.ago-a11y-toggle:hover { transform: translateY(-50%) scale(1.1); }
+.ago-a11y-toggle:focus-visible { outline: 3px solid #000; outline-offset: 2px; }
+.ago-a11y-toggle svg { width: 24px; height: 24px; fill: currentColor; }
+/* Positions */
+.ago-a11y-toggle.top-left { top: 16px; left: 16px; transform: none; }
+.ago-a11y-toggle.top-right { top: 16px; right: 16px; transform: none; }
+.ago-a11y-toggle.middle-left { left: 16px; }
+.ago-a11y-toggle.middle-right { right: 16px; }
+.ago-a11y-toggle.bottom-left { top: auto; bottom: 20px; left: 16px; transform: none; }
+.ago-a11y-toggle.bottom-right { top: auto; bottom: 20px; right: 16px; transform: none; }
+.ago-a11y-toggle.top-left:hover, .ago-a11y-toggle.top-right:hover, .ago-a11y-toggle.bottom-left:hover, .ago-a11y-toggle.bottom-right:hover { transform: scale(1.1); }
+.ago-a11y-toggle.middle-left:hover, .ago-a11y-toggle.middle-right:hover { transform: translateY(-50%) scale(1.1); }
+
+/* Shapes */
+.ago-a11y-toggle.shape-rounded { border-radius: 12px; width: auto; padding: 10px 16px; gap: 6px; }
+.ago-a11y-toggle.shape-rounded svg { width: 20px; height: 20px; }
+
+/* Panel */
+.ago-a11y-panel { position: fixed; top: 50%; transform: translateY(-50%); z-index: 99998; width: 300px; max-height: 80vh; background: #fff; border-radius: 12px; box-shadow: 0 8px 30px rgba(0,0,0,0.25); display: none; flex-direction: column; overflow: hidden; }
+.ago-a11y-panel.open { display: flex; }
+/* Panel positions */
+.ago-a11y-panel.top-left, .ago-a11y-panel.middle-left, .ago-a11y-panel.bottom-left { left: 16px; }
+.ago-a11y-panel.top-right, .ago-a11y-panel.middle-right, .ago-a11y-panel.bottom-right { right: 16px; }
+.ago-a11y-panel.top-left, .ago-a11y-panel.top-right { top: 70px; transform: none; }
+.ago-a11y-panel.bottom-left, .ago-a11y-panel.bottom-right { top: auto; bottom: 80px; transform: none; }
+
+/* Header */
+.ago-a11y-header { padding: 14px 16px; color: #fff; display: flex; align-items: center; justify-content: space-between; border-radius: 12px 12px 0 0; }
+.ago-a11y-header h3 { margin: 0; font-size: 15px; font-weight: 600; display: flex; align-items: center; gap: 8px; }
+.ago-a11y-header svg { width: 20px; height: 20px; fill: currentColor; }
+.ago-a11y-header-btns { display: flex; gap: 4px; }
+.ago-a11y-header-btns button { background: rgba(255,255,255,0.2); border: none; color: #fff; padding: 4px 8px; border-radius: 4px; cursor: pointer; font-size: 11px; }
+.ago-a11y-header-btns button:hover { background: rgba(255,255,255,0.3); }
+.ago-a11y-header-btns button:focus-visible { outline: 2px solid #fff; outline-offset: 1px; }
+
+/* Body */
+.ago-a11y-body { padding: 12px; overflow-y: auto; flex: 1; }
+
+/* Tool item */
+.ago-a11y-tool { display: flex; align-items: center; justify-content: space-between; padding: 10px 12px; border-radius: 8px; cursor: pointer; transition: background 0.15s; margin-bottom: 4px; border: 1px solid transparent; }
+.ago-a11y-tool:hover { background: #f6f7f7; }
+.ago-a11y-tool:focus-visible { outline: 2px solid #2271b1; outline-offset: -2px; }
+.ago-a11y-tool.active { background: #f0f7fc; border-color: #2271b1; }
+.ago-a11y-tool-label { display: flex; align-items: center; gap: 8px; font-size: 13px; font-weight: 500; color: #1d2327; }
+.ago-a11y-tool-label svg { width: 18px; height: 18px; fill: #50575e; flex-shrink: 0; }
+.ago-a11y-tool.active .ago-a11y-tool-label svg { fill: #2271b1; }
+.ago-a11y-tool-indicator { width: 8px; height: 8px; border-radius: 50%; background: #dcdcde; flex-shrink: 0; }
+.ago-a11y-tool.active .ago-a11y-tool-indicator { background: #2271b1; }
+
+/* Font size controls */
+.ago-a11y-fontsize { display: flex; align-items: center; gap: 6px; }
+.ago-a11y-fontsize button { width: 32px; height: 32px; border-radius: 6px; border: 1px solid #dcdcde; background: #fff; cursor: pointer; font-size: 16px; font-weight: 700; display: flex; align-items: center; justify-content: center; color: #1d2327; }
+.ago-a11y-fontsize button:hover { background: #f0f0f1; }
+.ago-a11y-fontsize button:focus-visible { outline: 2px solid #2271b1; }
+.ago-a11y-fontsize span { font-size: 12px; color: #666; min-width: 36px; text-align: center; }
+
+/* Contrast selector */
+.ago-a11y-contrast { display: flex; gap: 4px; flex-wrap: wrap; }
+.ago-a11y-contrast button { padding: 4px 10px; border-radius: 4px; border: 1px solid #dcdcde; background: #fff; cursor: pointer; font-size: 11px; color: #1d2327; }
+.ago-a11y-contrast button:hover { background: #f0f0f1; }
+.ago-a11y-contrast button.active { background: #2271b1; color: #fff; border-color: #2271b1; }
+.ago-a11y-contrast button:focus-visible { outline: 2px solid #2271b1; outline-offset: 1px; }
+
+/* Footer */
+.ago-a11y-footer { text-align: center; padding: 8px; font-size: 10px; color: #999; border-top: 1px solid #f0f0f1; }
+.ago-a11y-footer a { color: #999; text-decoration: none; }
+
+/* Reading guide */
+.ago-reading-guide { position: fixed; left: 0; width: 100%; height: 3px; pointer-events: none; z-index: 99996; opacity: 0.7; }
+
+/* Big cursor */
+body.ago-big-cursor, body.ago-big-cursor * { cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='32' viewBox='0 0 32 32'%3E%3Cpath d='M4 0l20 20h-10l-4 10-6-30z' fill='%23000' stroke='%23fff' stroke-width='1'/%3E%3C/svg%3E") 4 0, auto !important; }
+
+/* Accessibility classes */
+body.ago-high-contrast { filter: contrast(1.5) !important; }
+body.ago-inverted { filter: invert(1) hue-rotate(180deg) !important; }
+body.ago-inverted img, body.ago-inverted video { filter: invert(1) hue-rotate(180deg) !important; }
+body.ago-dark-mode { background: #1a1a1a !important; color: #e0e0e0 !important; }
+body.ago-dark-mode a { color: #6db3f2 !important; }
+body.ago-dark-mode img { opacity: 0.8; }
+body.ago-grayscale { filter: grayscale(1) !important; }
+body.ago-hide-images img { opacity: 0 !important; }
+body.ago-highlight-links a { outline: 2px solid #ff0 !important; background: rgba(255,255,0,0.1) !important; }
+body.ago-stop-animations *, body.ago-stop-animations *::before, body.ago-stop-animations *::after { animation-duration: 0s !important; animation-delay: 0s !important; transition-duration: 0s !important; }
+body.ago-stop-animations img[src$=".gif"] { visibility: hidden; }
+body.ago-dyslexia-font, body.ago-dyslexia-font * { font-family: OpenDyslexic, Comic Sans MS, sans-serif !important; }
+body.ago-spacing { line-height: 2 !important; letter-spacing: 0.12em !important; word-spacing: 0.16em !important; }
+body.ago-spacing p, body.ago-spacing li, body.ago-spacing span, body.ago-spacing div { line-height: 2 !important; letter-spacing: 0.12em !important; word-spacing: 0.16em !important; }
+
+/* OpenDyslexic font */
+@font-face { font-family: 'OpenDyslexic'; src: url('https://cdn.jsdelivr.net/npm/open-dyslexic@1.0.3/OpenDyslexic-Regular.woff2') format('woff2'); font-weight: normal; font-style: normal; font-display: swap; }
+
+@media (max-width: 480px) {
+    .ago-a11y-panel { width: calc(100vw - 32px); max-height: 70vh; }
+}
