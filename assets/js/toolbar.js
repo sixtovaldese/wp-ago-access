@@ -1,7 +1,6 @@
-/* aGo Access — Toolbar JS */
 (function () {
     'use strict';
-    var cfg = window.agoAccessCfg || {};
+    var cfg = window.agoaccessCfg || {};
 
     function init() {
         var container = document.getElementById('ago-access-toolbar');
@@ -9,7 +8,6 @@
         boot(container);
     }
 
-    // Wait for DOM if toolbar div not ready yet
     if (document.getElementById('ago-access-toolbar')) {
         init();
     } else if (document.readyState === 'loading') {
@@ -40,7 +38,6 @@
     var readingGuideEl = null;
     var speechSynth = window.speechSynthesis || null;
 
-    // Apply saved preferences immediately
     applyAll();
     render();
 
@@ -59,28 +56,23 @@
                 '<div class="ago-a11y-footer">Powered by <a href="https://ago.cl" target="_blank">aGo Access</a></div>' +
             '</div>';
 
-        // Events
         container.querySelector('.ago-a11y-toggle').addEventListener('click', toggle);
         container.querySelector('[data-action="close"]').addEventListener('click', toggle);
         container.querySelector('[data-action="reset"]').addEventListener('click', resetAll);
 
-        // Tool events
         container.querySelectorAll('[data-tool-action]').forEach(function (el) {
             el.addEventListener('click', function () { handleTool(el.getAttribute('data-tool-action')); });
         });
 
-        // Font size buttons
         var fsDec = container.querySelector('[data-fs="dec"]');
         var fsInc = container.querySelector('[data-fs="inc"]');
         if (fsDec) fsDec.addEventListener('click', function (e) { e.stopPropagation(); changeFontSize(-10); });
         if (fsInc) fsInc.addEventListener('click', function (e) { e.stopPropagation(); changeFontSize(10); });
 
-        // Contrast buttons
         container.querySelectorAll('[data-contrast]').forEach(function (btn) {
             btn.addEventListener('click', function (e) { e.stopPropagation(); setContrast(btn.getAttribute('data-contrast')); });
         });
 
-        // Keyboard: Escape closes
         document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && isOpen) toggle(); });
     }
 
@@ -145,7 +137,6 @@
         prefs[key] = !prefs[key];
         save();
         applyAll();
-        // Update UI
         var el = container.querySelector('[data-tool-action="' + key + '"]');
         if (el) { el.classList.toggle('active', prefs[key]); el.setAttribute('aria-pressed', prefs[key]); }
     }
@@ -167,7 +158,6 @@
         if (mode === 'high') document.body.classList.add('ago-high-contrast');
         else if (mode === 'inverted') document.body.classList.add('ago-inverted');
         else if (mode === 'dark') document.body.classList.add('ago-dark-mode');
-        // Update buttons
         container.querySelectorAll('[data-contrast]').forEach(function (b) { b.classList.toggle('active', b.getAttribute('data-contrast') === mode); });
     }
 
@@ -183,14 +173,11 @@
 
     function applyAll() {
         var b = document.body;
-        // Font size
         if (prefs.fontSize && prefs.fontSize !== 100) document.documentElement.style.fontSize = prefs.fontSize + '%';
-        // Contrast
         b.classList.remove('ago-high-contrast', 'ago-inverted', 'ago-dark-mode');
         if (prefs.contrast === 'high') b.classList.add('ago-high-contrast');
         else if (prefs.contrast === 'inverted') b.classList.add('ago-inverted');
         else if (prefs.contrast === 'dark') b.classList.add('ago-dark-mode');
-        // Toggles
         b.classList.toggle('ago-dyslexia-font', !!prefs.dyslexiaFont);
         b.classList.toggle('ago-spacing', !!prefs.spacing);
         b.classList.toggle('ago-big-cursor', !!prefs.bigCursor);
@@ -198,7 +185,6 @@
         b.classList.toggle('ago-stop-animations', !!prefs.stopAnimations);
         b.classList.toggle('ago-grayscale', !!prefs.grayscale);
         b.classList.toggle('ago-hide-images', !!prefs.hideImages);
-        // Reading guide
         if (prefs.readingGuide) {
             if (!readingGuideEl) {
                 readingGuideEl = document.createElement('div');
@@ -230,5 +216,5 @@
 
     function save() { localStorage.setItem(STORAGE_KEY, JSON.stringify(prefs)); }
     function esc(s) { var d = document.createElement('div'); d.appendChild(document.createTextNode(s || '')); return d.innerHTML; }
-    } // end boot()
+    }
 })();

@@ -15,15 +15,14 @@ class Settings {
         ?>
         <div class="wrap">
             <h1>
-                <img src="<?php echo esc_url( AGO_ACCESS_URL . 'assets/img/agolab.webp' ); ?>" alt="aGo Lab" style="height:28px;width:auto;vertical-align:middle;margin-right:8px">
+                <img src="<?php echo esc_url( AGOACCESS_URL . 'assets/img/agolab.webp' ); ?>" alt="aGo Lab" style="height:28px;width:auto;vertical-align:middle;margin-right:8px">
                 <?php esc_html_e( 'aGo Access', 'ago-access' ); ?>
-                <span style="font-size:12px;color:#999;margin-left:8px">v<?php echo esc_html( AGO_ACCESS_VERSION ); ?></span>
+                <span style="font-size:12px;color:#999;margin-left:8px">v<?php echo esc_html( AGOACCESS_VERSION ); ?></span>
             </h1>
 
             <div class="ago-layout">
                 <div class="ago-main">
 
-                    <!-- Score -->
                     <div class="card ago-card">
                         <h2><?php esc_html_e( 'Accessibility Score', 'ago-access' ); ?></h2>
                         <p style="font-size:13px;color:#666"><?php esc_html_e( 'Scan your homepage for common accessibility issues.', 'ago-access' ); ?></p>
@@ -35,7 +34,6 @@ class Settings {
                         </p>
                     </div>
 
-                    <!-- Toolbar -->
                     <div class="card ago-card">
                         <h2><?php esc_html_e( 'Accessibility Toolbar', 'ago-access' ); ?></h2>
                         <p style="font-size:13px;color:#666"><?php esc_html_e( 'A floating toolbar on your frontend that lets visitors adjust the experience to their needs.', 'ago-access' ); ?></p>
@@ -108,7 +106,6 @@ class Settings {
                         </table>
                     </div>
 
-                    <!-- Auto Fixes -->
                     <div class="card ago-card">
                         <h2><?php esc_html_e( 'Automatic Fixes', 'ago-access' ); ?></h2>
                         <p style="font-size:13px;color:#666"><?php esc_html_e( 'Background fixes applied automatically to improve accessibility without any visible change.', 'ago-access' ); ?></p>
@@ -137,8 +134,16 @@ class Settings {
 
                 </div>
 
-                <!-- Sidebar -->
                 <div class="ago-sidebar">
+                    <div class="card ago-card">
+                        <h3><?php esc_html_e( 'Quick links', 'ago-access' ); ?></h3>
+                        <ul class="ago-features" style="list-style:none;padding:0;margin:0">
+                            <li><a href="https://webaim.org/resources/contrastchecker/" target="_blank" rel="noopener"><?php esc_html_e( 'Contrast checker (WebAIM)', 'ago-access' ); ?></a></li>
+                            <li><a href="https://wave.webaim.org/" target="_blank" rel="noopener"><?php esc_html_e( 'Accessibility evaluation (WAVE)', 'ago-access' ); ?></a></li>
+                            <li><a href="https://www.w3.org/WAI/WCAG22/quickref/" target="_blank" rel="noopener"><?php esc_html_e( 'WCAG 2.2 quick reference', 'ago-access' ); ?></a></li>
+                        </ul>
+                    </div>
+
                     <div class="card ago-card">
                         <h3><?php esc_html_e( 'About', 'ago-access' ); ?></h3>
                         <p style="font-size:13px;color:#666"><?php esc_html_e( 'Accessibility toolbar and automatic fixes for WordPress. WCAG 2.2 oriented, 100% free, no limitations.', 'ago-access' ); ?></p>
@@ -153,6 +158,20 @@ class Settings {
                             <li><?php esc_html_e( 'Lightweight (< 10KB)', 'ago-access' ); ?></li>
                         </ul>
                     </div>
+                    <div class="card ago-card">
+                        <h3 style="margin-top:0"><?php esc_html_e( 'Other aGo Lab plugins', 'ago-access' ); ?></h3>
+                        <p style="font-size:13px;color:#666;margin-top:0"><?php esc_html_e( 'Free WordPress plugins from the same team. No upsell pressure.', 'ago-access' ); ?></p>
+                        <ul class="ago-features">
+                            <li><strong>aGo Mail Pilot</strong>, <?php esc_html_e( 'Guided SMTP email delivery.', 'ago-access' ); ?></li>
+                            <li><strong>aGo AI Chatbot</strong>, <?php esc_html_e( 'AI customer support widget for your site.', 'ago-access' ); ?></li>
+                            <li><strong>aGo Legal</strong>, <?php esc_html_e( 'GDPR / LGPD / Chile Law 21.719 compliance toolkit.', 'ago-access' ); ?></li>
+                            <li><strong>aGo Cleanup</strong>, <?php esc_html_e( 'Remove WordPress bloat and front-end clutter.', 'ago-access' ); ?></li>
+                        </ul>
+                        <p>
+                            <a href="https://ago.cl/herramientas/" target="_blank" rel="noopener" class="button button-secondary" style="width:100%;text-align:center"><?php esc_html_e( 'Browse aGo Lab plugins', 'ago-access' ); ?></a>
+                        </p>
+                    </div>
+
                     <div class="card ago-card ago-donation">
                         <h3><?php esc_html_e( 'Support Open Source', 'ago-access' ); ?></h3>
                         <p style="font-size:13px;color:#666"><?php esc_html_e( 'This plugin is 100% free. If it helps you, consider supporting our work.', 'ago-access' ); ?></p>
@@ -165,7 +184,7 @@ class Settings {
                         <p class="ago-donation-note"><?php esc_html_e( 'Voluntary donation. Thank you!', 'ago-access' ); ?></p>
                     </div>
                     <div class="ago-footer">
-                        <a href="https://ago.cl" target="_blank" rel="noopener" class="ago-footer-logo"><img src="<?php echo esc_url( AGO_ACCESS_URL . 'assets/img/agolab.webp' ); ?>" alt="aGo Lab" style="height:40px;width:auto"></a>
+                        <a href="https://ago.cl" target="_blank" rel="noopener" class="ago-footer-logo"><img src="<?php echo esc_url( AGOACCESS_URL . 'assets/img/agolab.webp' ); ?>" alt="aGo Lab" style="height:40px;width:auto"></a>
                         <p><?php /* translators: 1: heart icon HTML, 2: aGo Lab link HTML */ echo wp_kses_post( sprintf( __( 'Developed with %1$s by %2$s', 'ago-access' ), '<span style="color:#e25555">&#10084;</span>', '<a href="https://ago.cl" target="_blank" rel="noopener"><strong>aGo Lab</strong></a>' ) ); ?></p>
                         <p style="font-size:11px;color:#999"><?php esc_html_e( 'Building tools for the web, one plugin at a time.', 'ago-access' ); ?></p>
                     </div>

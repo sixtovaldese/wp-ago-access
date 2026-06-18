@@ -25,28 +25,22 @@ class Plugin {
     }
 
     public function load_textdomain(): void {
-        $modir = WP_LANG_DIR . '/plugins/';
-        foreach ( [ 'es_ES', 'pt_BR' ] as $loc ) {
-            $src = AGO_ACCESS_PATH . "languages/ago-access-{$loc}.l10n.php";
-            $dest = $modir . "ago-access-{$loc}.l10n.php";
-            if ( file_exists( $src ) && ! file_exists( $dest ) ) @copy( $src, $dest );
-        }
-        load_plugin_textdomain( 'ago-access', false, dirname( plugin_basename( AGO_ACCESS_FILE ) ) . '/languages' );
+        load_plugin_textdomain( 'ago-access', false, dirname( plugin_basename( AGOACCESS_FILE ) ) . '/languages' );
     }
 
     public function admin_menu(): void {
-        if ( empty( $GLOBALS['admin_page_hooks']['ago-tools'] ) ) {
-            add_menu_page( __( 'aGo Tools', 'ago-access' ), __( 'aGo Tools', 'ago-access' ), 'manage_options', 'ago-tools', '__return_null', 'dashicons-hammer', 81 );
+        if ( empty( $GLOBALS['admin_page_hooks']['agolab-tools'] ) ) {
+            add_menu_page( __( 'aGo Tools', 'ago-access' ), __( 'aGo Tools', 'ago-access' ), 'manage_options', 'agolab-tools', '__return_null', 'dashicons-hammer', 81 );
         }
-        add_submenu_page( 'ago-tools', __( 'aGo Access', 'ago-access' ), __( 'Accessibility', 'ago-access' ), 'manage_options', 'ago-access', [ Admin\Settings::class, 'render' ] );
-        remove_submenu_page( 'ago-tools', 'ago-tools' );
+        add_submenu_page( 'agolab-tools', __( 'aGo Access', 'ago-access' ), __( 'Accessibility', 'ago-access' ), 'manage_options', 'agoaccess', [ Admin\Settings::class, 'render' ] );
+        remove_submenu_page( 'agolab-tools', 'agolab-tools' );
     }
 
     public function admin_assets( string $hook ): void {
-        if ( ! str_ends_with( $hook, '_page_ago-access' ) ) return;
-        wp_enqueue_style( 'ago-access-admin', AGO_ACCESS_URL . 'assets/css/admin.css', [], AGO_ACCESS_VERSION );
-        wp_enqueue_script( 'ago-access-admin', AGO_ACCESS_URL . 'assets/js/admin.js', [], AGO_ACCESS_VERSION, true );
-        wp_localize_script( 'ago-access-admin', 'agoAccess', [
+        if ( ! str_ends_with( $hook, '_page_agoaccess' ) ) return;
+        wp_enqueue_style( 'agoaccess-admin', AGOACCESS_URL . 'assets/css/admin.css', [], AGOACCESS_VERSION );
+        wp_enqueue_script( 'agoaccess-admin', AGOACCESS_URL . 'assets/js/admin.js', [], AGOACCESS_VERSION, true );
+        wp_localize_script( 'agoaccess-admin', 'agoaccessAdmin', [
             'restUrl' => rest_url( 'ago-access/v1' ),
             'nonce'   => wp_create_nonce( 'wp_rest' ),
         ] );
@@ -54,10 +48,30 @@ class Plugin {
 
     public function frontend_assets(): void {
         $s = self::get_settings();
+        if ( is_admin() ) return;
+
+        $fixes = $s['auto_fixes'] ?? self::default_fixes();
+
+        if ( ! empty( $fixes['focus_visible'] ) || ! empty( $fixes['tab_order'] ) || ! empty( $fixes['skip_link'] ) ) {
+            wp_register_style( 'agoaccess-fixes', false, [], AGOACCESS_VERSION );
+            wp_enqueue_style( 'agoaccess-fixes' );
+            if ( ! empty( $fixes['skip_link'] ) ) {
+                wp_add_inline_style( 'agoaccess-fixes', '.ago-skip-link{position:absolute;left:-9999px;top:auto;width:1px;height:1px;overflow:hidden;z-index:99999}.ago-skip-link:focus{position:fixed;left:0;top:0;width:auto;height:auto;overflow:visible;padding:8px 16px;background:#1d2327;color:#fff;font-size:14px;text-decoration:none;border-radius:0 0 4px 0}' );
+            }
+            if ( ! empty( $fixes['focus_visible'] ) ) {
+                wp_add_inline_style( 'agoaccess-fixes', ':focus-visible{outline:3px solid #2271b1 !important;outline-offset:2px !important;}' );
+            }
+            if ( ! empty( $fixes['tab_order'] ) ) {
+                wp_register_script( 'agoaccess-fixes', false, [], AGOACCESS_VERSION, true );
+                wp_enqueue_script( 'agoaccess-fixes' );
+                wp_add_inline_script( 'agoaccess-fixes', 'document.querySelectorAll("[tabindex]").forEach(function(el){var t=parseInt(el.getAttribute("tabindex"),10);if(t>0)el.setAttribute("tabindex","0");});' );
+            }
+        }
+
         if ( empty( $s['enabled'] ) ) return;
-        wp_enqueue_style( 'ago-access-toolbar', AGO_ACCESS_URL . 'assets/css/toolbar.css', [], AGO_ACCESS_VERSION );
-        wp_enqueue_script( 'ago-access-toolbar', AGO_ACCESS_URL . 'assets/js/toolbar.js', [], AGO_ACCESS_VERSION, true );
-        wp_localize_script( 'ago-access-toolbar', 'agoAccessCfg', [
+        wp_enqueue_style( 'agoaccess-toolbar', AGOACCESS_URL . 'assets/css/toolbar.css', [], AGOACCESS_VERSION );
+        wp_enqueue_script( 'agoaccess-toolbar', AGOACCESS_URL . 'assets/js/toolbar.js', [], AGOACCESS_VERSION, true );
+        wp_localize_script( 'agoaccess-toolbar', 'agoaccessCfg', [
             'position' => $s['position'] ?? 'bottom-right',
             'shape'    => $s['shape'] ?? 'circle',
             'icon'     => $s['icon'] ?? 'person',
@@ -116,19 +130,11 @@ class Plugin {
         $s = self::get_settings();
         $fixes = $s['auto_fixes'] ?? self::default_fixes();
 
-        // Skip link
         if ( ! empty( $fixes['skip_link'] ) ) {
-            echo '<a href="#content" class="ago-skip-link" style="position:absolute;left:-9999px;top:auto;width:1px;height:1px;overflow:hidden;z-index:99999;padding:8px 16px;background:#1d2327;color:#fff;font-size:14px;text-decoration:none;border-radius:0 0 4px 0" onfocus="this.style.cssText=\'position:fixed;left:0;top:0;width:auto;height:auto;overflow:visible;z-index:99999;padding:8px 16px;background:#1d2327;color:#fff;font-size:14px;text-decoration:none;border-radius:0 0 4px 0\'" onblur="this.style.cssText=\'position:absolute;left:-9999px;top:auto;width:1px;height:1px;overflow:hidden\'">' . esc_html__( 'Skip to content', 'ago-access' ) . '</a>';
-        }
-
-        // Focus visible
-        if ( ! empty( $fixes['focus_visible'] ) ) {
-            echo '<style>:focus-visible{outline:3px solid #2271b1!important;outline-offset:2px!important;}</style>';
-        }
-
-        // Tab order fix (remove positive tabindex)
-        if ( ! empty( $fixes['tab_order'] ) ) {
-            echo '<script>document.querySelectorAll("[tabindex]").forEach(function(el){var t=parseInt(el.getAttribute("tabindex"),10);if(t>0)el.setAttribute("tabindex","0");});</script>';
+            printf(
+                '<a href="#content" class="ago-skip-link">%s</a>',
+                esc_html__( 'Skip to content', 'ago-access' )
+            );
         }
     }
 
@@ -153,7 +159,7 @@ class Plugin {
 
     public function rest_save_settings( \WP_REST_Request $request ): \WP_REST_Response {
         $data = $request->get_json_params();
-        update_option( 'ago_access_settings', self::sanitize( $data ) );
+        update_option( 'agoaccess_settings', self::sanitize( $data ) );
         return new \WP_REST_Response( [ 'saved' => true ] );
     }
 
@@ -173,7 +179,7 @@ class Plugin {
             'tools'      => self::default_tools(),
             'auto_fixes' => self::default_fixes(),
         ];
-        return wp_parse_args( get_option( 'ago_access_settings', [] ), $defaults );
+        return wp_parse_args( get_option( 'agoaccess_settings', [] ), $defaults );
     }
 
     public static function default_tools(): array {

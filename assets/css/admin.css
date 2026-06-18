@@ -1,4 +1,3 @@
-/* aGo Access — Admin CSS */
 .ago-layout { display: flex; gap: 20px; margin-top: 20px; }
 .ago-main { flex: 1; max-width: 680px; }
 .ago-sidebar { width: 280px; flex-shrink: 0; }
@@ -20,7 +19,7 @@
 #ago-status { margin-top: 12px; padding: 10px 16px; border-radius: 4px; font-size: 14px; }
 #ago-status.success { background: #edfaef; color: #00a32a; border: 1px solid #00a32a; }
 #ago-status.error { background: #fcf0f1; color: #d63638; border: 1px solid #d63638; }
-/* Score */
+
 .ago-score { display: inline-flex; align-items: center; justify-content: center; width: 64px; height: 64px; border-radius: 50%; font-size: 22px; font-weight: 700; color: #fff; margin-right: 16px; }
 .ago-score.good { background: #00a32a; }
 .ago-score.ok { background: #dba617; }

@@ -1,8 +1,9 @@
 === aGo Access ===
-Contributors: sixtovaldese
+Contributors: agolab
+Donate link: https://paypal.me/sixtovaldes
 Tags: accessibility, wcag, a11y, toolbar, ada
 Requires at least: 6.0
-Tested up to: 6.9
+Tested up to: 7.0
 Requires PHP: 8.1
 Stable tag: 1.0.0
 License: GPL-2.0-or-later
@@ -18,17 +19,17 @@ aGo Access adds a floating accessibility toolbar to your WordPress site, giving 
 
 = Toolbar Tools (11) =
 
-* **Text Size** — Increase or decrease font size
-* **Contrast Modes** — High contrast, inverted colors, dark mode
-* **Dyslexia-Friendly Font** — Switch to OpenDyslexic
-* **Text Spacing** — Increase line height and letter spacing
-* **Big Cursor** — Larger, more visible mouse cursor
-* **Reading Guide** — Horizontal line follows the mouse
-* **Highlight Links** — Make all links visually obvious
-* **Stop Animations** — Pause GIFs, videos, CSS animations
-* **Grayscale** — Remove all colors
-* **Hide Images** — Focus on text content only
-* **Read Aloud** — Text-to-speech using Web Speech API (no API cost)
+* **Text Size**, Increase or decrease font size
+* **Contrast Modes**, High contrast, inverted colors, dark mode
+* **Dyslexia-Friendly Font**, Switch to OpenDyslexic
+* **Text Spacing**, Increase line height and letter spacing
+* **Big Cursor**, Larger, more visible mouse cursor
+* **Reading Guide**, Horizontal line follows the mouse
+* **Highlight Links**, Make all links visually obvious
+* **Stop Animations**, Pause GIFs, videos, CSS animations
+* **Grayscale**, Remove all colors
+* **Hide Images**, Focus on text content only
+* **Read Aloud**, Text-to-speech using Web Speech API (no API cost)
 
 = Automatic Background Fixes (7) =
 
@@ -60,7 +61,7 @@ This plugin helps address several WCAG 2.2 success criteria including perceivabl
 1. Upload the `ago-access` folder to `/wp-content/plugins/`
 2. Activate the plugin through the 'Plugins' menu
 3. Go to aGo Herramientas → Accessibility
-4. The toolbar is enabled by default — visit your site to see it
+4. The toolbar is enabled by default, visit your site to see it
 5. Customize position, shape, icon, and tools as needed
 
 == Frequently Asked Questions ==
@@ -85,6 +86,17 @@ Yes, in the browser's localStorage. Each visitor's settings persist across page 
 
 No. The toolbar CSS and JS together are under 10KB. The OpenDyslexic font only loads when activated.
 
+== External services ==
+
+This plugin does not connect to any third-party service. The optional accessibility scanner sends a single HTTP request to your own site's homepage (the same URL returned by home_url()) to analyze its markup locally on your server. No data ever leaves your installation. The dyslexia-friendly font (OpenDyslexic) and all toolbar assets are bundled with the plugin and served from your own domain. OpenDyslexic is licensed under the SIL Open Font License 1.1 (GPL-compatible).
+
+== Privacy ==
+
+* Plugin settings are stored locally in the wp_options table (option agoaccess_settings).
+* Visitor toolbar preferences are stored only in the visitor's own browser localStorage. They are never sent to the server or to any third party.
+* Read Aloud uses the browser's built-in Web Speech API; no audio or text is sent to an external service.
+* On uninstall, the agoaccess_settings option is removed.
+
 == Screenshots ==
 
 1. Floating accessibility toolbar on the frontend
@@ -95,9 +107,14 @@ No. The toolbar CSS and JS together are under 10KB. The OpenDyslexic font only l
 == Changelog ==
 
 = 1.0.0 =
-* Initial release
-* 11 accessibility tools in floating toolbar
-* 7 automatic background fixes
-* Accessibility score scanner
-* 6 positions, 2 shapes, 4 icons
-* Translations: English, Spanish, Portuguese
+* Initial release.
+* 11 accessibility tools in floating toolbar.
+* 7 automatic background fixes.
+* Accessibility score scanner.
+* 6 positions, 2 shapes, 4 icons.
+* Translations: English, Spanish, Brazilian Portuguese.
+
+== Upgrade Notice ==
+
+= 1.0.0 =
+Initial release.

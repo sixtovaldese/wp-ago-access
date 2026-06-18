@@ -10,17 +10,9 @@ class Scanner {
         $issues = [];
         $score  = 100;
 
-        // Fetch homepage HTML — try home_url first, fallback to internal nginx
-        $url = home_url();
-        $response = wp_remote_get( $url, [ 'timeout' => 10, 'sslverify' => false ] );
-        $html = is_wp_error( $response ) ? '' : wp_remote_retrieve_body( $response );
-
-        // Fallback: try internal Docker URL if home_url fails
-        if ( empty( $html ) ) {
-            $internal_url = 'http://nginx/';
-            $response = wp_remote_get( $internal_url, [ 'timeout' => 10, 'headers' => [ 'Host' => wp_parse_url( $url, PHP_URL_HOST ) ] ] );
-            $html = is_wp_error( $response ) ? '' : wp_remote_retrieve_body( $response );
-        }
+        $url      = home_url();
+        $response = wp_remote_get( $url, [ 'timeout' => 10 ] );
+        $html     = is_wp_error( $response ) ? '' : wp_remote_retrieve_body( $response );
 
         if ( empty( $html ) ) {
             return [ 'score' => 0, 'issues' => [ [ 'type' => 'error', 'msg' => __( 'Could not fetch homepage. Try scanning from a browser where your site is accessible.', 'ago-access' ) ] ] ];

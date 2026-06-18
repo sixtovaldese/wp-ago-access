@@ -1,15 +1,13 @@
-/* aGo Access — Admin JS */
 (function () {
     'use strict';
     var $ = document.querySelector.bind(document);
     var $$ = document.querySelectorAll.bind(document);
-    var restUrl = (window.agoAccess || {}).restUrl || '';
-    var nonce = (window.agoAccess || {}).nonce || '';
+    var restUrl = (window.agoaccessAdmin || {}).restUrl || '';
+    var nonce = (window.agoaccessAdmin || {}).nonce || '';
 
     var saveBtn = $('#ago-save-settings');
     if (!saveBtn) return;
 
-    // Save
     saveBtn.addEventListener('click', function () {
         var data = {
             enabled: ($('#ago-enabled') || {}).checked || false,
@@ -32,7 +30,6 @@
         .finally(function () { saveBtn.disabled = false; saveBtn.textContent = 'Save Settings'; });
     });
 
-    // Scan
     var scanBtn = $('#ago-scan-btn');
     if (scanBtn) {
         scanBtn.addEventListener('click', function () {
