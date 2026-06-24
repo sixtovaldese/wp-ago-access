@@ -5,7 +5,7 @@ Tags: accessibility, wcag, a11y, toolbar, ada
 Requires at least: 6.0
 Tested up to: 7.0
 Requires PHP: 8.1
-Stable tag: 1.0.0
+Stable tag: 1.0.1
 License: GPL-2.0-or-later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -106,6 +106,9 @@ This plugin does not connect to any third-party service. The optional accessibil
 
 == Changelog ==
 
+= 1.0.1 =
+* Removed the front-end credit link from the toolbar panel (no external links rendered on the public site).
+
 = 1.0.0 =
 * Initial release.
 * 11 accessibility tools in floating toolbar.
@@ -115,6 +118,9 @@ This plugin does not connect to any third-party service. The optional accessibil
 * Translations: English, Spanish, Brazilian Portuguese.
 
 == Upgrade Notice ==
+
+= 1.0.1 =
+Compliance fix: removes the front-end credit link.
 
 = 1.0.0 =
 Initial release.

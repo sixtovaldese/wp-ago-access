@@ -3,7 +3,7 @@
  * Plugin Name: aGo Access
  * Plugin URI:  https://ago.cl/herramientas/
  * Description: Accessibility toolbar and automatic fixes for WordPress. WCAG 2.2 oriented, 100% free.
- * Version:     1.0.0
+ * Version:     1.0.1
  * Author:      aGo Lab
  * Author URI:  https://ago.cl/
  * License:     GPL-2.0-or-later
@@ -16,7 +16,7 @@
 
 defined( 'ABSPATH' ) || exit;
 
-define( 'AGOACCESS_VERSION', '1.0.0' );
+define( 'AGOACCESS_VERSION', '1.0.1' );
 define( 'AGOACCESS_FILE', __FILE__ );
 define( 'AGOACCESS_PATH', plugin_dir_path( __FILE__ ) );
 define( 'AGOACCESS_URL', plugin_dir_url( __FILE__ ) );

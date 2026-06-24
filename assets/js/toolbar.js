@@ -53,7 +53,6 @@
                     '</div>' +
                 '</div>' +
                 '<div class="ago-a11y-body">' + renderTools() + '</div>' +
-                '<div class="ago-a11y-footer">Powered by <a href="https://ago.cl" target="_blank">aGo Access</a></div>' +
             '</div>';
 
         container.querySelector('.ago-a11y-toggle').addEventListener('click', toggle);
